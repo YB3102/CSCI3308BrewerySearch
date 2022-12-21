@@ -1,0 +1,67 @@
+<%- include ('../partials/header') %>
+<%- include ('../partials/menu') %>
+<style>
+  .center#rectangle {
+                background-color: #0999c9;
+                margin: auto;
+                border-radius: 10px;
+                color: lightcyan;
+            }
+.center {
+        line-height: 200px;
+        height: 50px;
+        text-align: center;
+    }
+
+    .center h2 {
+        line-height: 1.5;
+        vertical-align: middle;
+    }
+</style>
+<body>
+    <main style="background-color:#0999c9; color: lavender;">
+        <% if(data.length===0){ %>
+            <h6 class="text-center display-6" style="color: lavender;">Reviews currently empty.</h6>
+        <% }else{ %>
+                <div class="center" id="rectangle">
+                          <h2> REVIEWS </h2>
+                        </div>
+            <table class="table" style="color: lavender;">
+                <thead class = "thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Brewery Name</th>
+                        <th scope="col">Review</th>
+                        <th scope="col">Review Date</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody" class="tableBody">
+
+                    <% for(var i=0; i < data.length; i++){ %>
+                    <tr class="table-primary2">
+                        <td>
+                            <%= data[i].review_id %>.
+                        </td>
+                        <td>
+                            <%= data[i].brewery_name %>
+                        </td>
+                        <td>
+                            <%= data[i].review %>
+                        </td>
+                        <td>
+                            <%= data[i].reviewdate %> GMT
+                        </td>
+                            <% } %>
+                    </tr>
+                    <tr class="create_row">
+                        <td style="border-bottom: none;"></td>
+                        <td style="border-bottom: none;"></td>
+                        <td style="border-bottom: none;"></td>
+                    </tr>
+                </tbody>
+            </table>
+        <% } %>
+    </main>
+</body>
+
+<%- include ('../partials/footer') %>

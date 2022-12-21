@@ -1,0 +1,32 @@
+<header>
+    <nav class="navbar navbar-expand-sm border-bottom justify-content-between">
+      <div class="container">
+        <button
+          class="navbar-toggler ms-auto"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbar-collapse"
+          aria-controls="navbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <!-- TO-DO: For Discover, add a <a> tag with an attribute href to call the '/discover' API -->
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <!-- TO-DO: For Discover, add a <a> tag with an attribute href to call the '/discover' API -->
+                <a class="nav-link" href="/reviews">Reviews</a>
+            </li>
+          </ul>
+            <form class="d-flex" action="/main" method = "GET">
+            <input class="form-control me-2" type="search" id ="brewSearch" name = "brewSearch" placeholder="Search by city" aria-label="Search" required>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+         </div>
+      </div>
+    </nav>
+   </header>

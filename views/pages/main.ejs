@@ -1,0 +1,110 @@
+<%- include ('../partials/header') %>
+<%- include ('../partials/menu') %>
+
+<style>
+  .center#rectangle {
+                background-color: #0999c9;
+                margin: auto;
+                border-radius: 10px;
+                color: lightcyan;
+            }
+.center {
+        line-height: 200px;
+        height: 50px;
+        text-align: center;
+    }
+
+    .center h2 {
+        line-height: 1.5;
+        vertical-align: middle;
+    }
+</style>
+
+<main style="background-color:#0999c9;">
+  <div class="container">
+    <%- include ('../partials/message') %>
+    <!-- THE REST OF YOUR HTML CODE GOES HERE -->
+
+    <% if (results.length === 0 || results.data.length === 0) { %>
+        <h6 class="text-center display-6" style="color: lavender;">Data set empty. Type a city in search box or use a different city.</h6>
+
+    <% } else { %>
+    <div class="center" id="rectangle">
+                          <h2> BREWERIES </h2>
+                        </div>
+    <div class = "row row-cols-2">
+      <% for (var i=0; i < results.data.length; i++){%>
+
+      <div class="modal" id="createModal<%=i%>">
+        <div class="modal-dialog">
+            <div class="modal-content" style="background-color: #7c0cd2;">
+
+                <div class="modal-header">
+                    <h4 style="color: aqua;">YOU SHOULD ADD A REVIEW NOW!</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <img src="https://thumbs2.imgbox.com/d8/b7/UJhGVkss_t.jpg" alt="image host" style="width: 100%; height: 400px;"/>
+
+                <form action="/addreview" method="POST">
+                    <div class = "modal-body">
+                        <label for="brewery_name">Brewery Name</label>
+                          <div class="form-group"  style="padding-left: 100px;">
+                              <input class="form-control2" readonly name="brewery_name" id = "brewery_name" type="text" value = "<%=results.data[i].name%>"
+                                    maxlength="100">
+                          </div>
+                  
+                        <label for="review">Review</label>
+                          <div class="form-group" style="padding-left: 100px;">
+                              <textarea class="form-control-desc" name="review" id = "review" type="text" maxlength="1000" placeholder="Review"></textarea>
+                          </div>
+                    </div>
+
+                    <div class="modal-footer" style="border: none;">
+                      <button type="submit" class="btn btn-primary">Add review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+      </div>
+        <div class = "col">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title" id="brewNamecard<%=i%>">
+                <% if (results.data[i].name === null){ %>
+                -
+                <% } else { %>
+                <%=results.data[i].name%>
+                <% } %>
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                <% if (results.data[i].brewery_type === null){ %>
+                -
+                <% } else { %>
+                <%=results.data[i].brewery_type%>
+                <% } %>
+                </h6>
+                <div class = "row">
+                <p class="card-text">
+                <% if (results.data[i].street === null){ %>
+                -
+                <% } else { %>
+                <%=results.data[i].street%>
+                <% } %>
+                </p>
+                </div>
+                <div class = "row">
+                  <button type='button' class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#createModal<%=i%>">Add Review
+                  </button>
+                </div>
+            </div>
+        </div>
+        </div>
+        <% } %>
+    </div>
+    <% } %>
+  </div>
+</main>
+
+<%- include ('../partials/footer') %>
